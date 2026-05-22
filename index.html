@@ -553,6 +553,50 @@
   .phone-notif-body { font-size: 9.5px; color: var(--text2); font-family: monospace; }
   @keyframes notifPop { from { opacity:0; transform:scale(0.9) translateY(8px); } to { opacity:1; transform:scale(1) translateY(0); } }
 
+  /* ── HOW TO GET STARTED ── */
+  .get-started-section {
+    padding: 5rem 2rem; max-width: 900px; margin: 0 auto;
+    text-align: center; position: relative; z-index: 1;
+  }
+  .get-started-steps {
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: 0; margin-top: 3rem; flex-wrap: wrap;
+  }
+  .gs-step {
+    flex: 1; min-width: 220px; max-width: 280px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 1rem; padding: 2rem 1.5rem;
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: var(--radius); position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .gs-step:hover { border-color: rgba(240,192,64,0.3); transform: translateY(-4px); }
+  .gs-step-num {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: #000;
+    box-shadow: 0 0 20px rgba(240,192,64,0.35);
+    flex-shrink: 0;
+  }
+  .gs-step-icon { font-size: 32px; line-height: 1; }
+  .gs-step h3 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
+  .gs-step p { font-size: 14px; color: var(--text2); line-height: 1.55; }
+  .gs-arrow {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 0.5rem; color: var(--gold); font-size: 22px; opacity: 0.5;
+    flex-shrink: 0; margin-top: 1rem;
+  }
+  .gs-cta-row {
+    margin-top: 3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  }
+  .gs-cta-note { font-size: 13px; color: var(--text3); }
+  @media (max-width: 680px) {
+    .gs-arrow { transform: rotate(90deg); padding: 0.25rem 0; }
+    .get-started-steps { flex-direction: column; align-items: center; }
+    .gs-step { max-width: 100%; width: 100%; }
+  }
+
   /* ── RISK DISCLAIMER ── */
   .risk-banner {
     background: rgba(255,152,0,0.05); border-top: 0.5px solid rgba(255,152,0,0.15);
@@ -651,7 +695,7 @@
 
 
 <!-- FLOATING CTA -->
-<a href="https://t.me/CheeHeeLoh" target="_blank" class="float-cta" id="floatCta">
+<a href="https://t.me/CheeAIPro" target="_blank" class="float-cta" id="floatCta">
   💬 Get Access on Telegram
 </a>
 
@@ -664,6 +708,7 @@
     <li><a href="#how">How it works</a></li>
     <li><a href="#compare">Compare</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#start">Get started</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get access</a>
 </nav>
@@ -1081,6 +1126,55 @@
   </div>
 </section>
 
+<div class="shimmer-divider"></div>
+
+<!-- HOW TO GET STARTED -->
+<section id="start" style="position:relative;z-index:1;">
+<div class="get-started-section">
+  <div class="section-tag reveal">Getting started</div>
+  <h2 class="reveal">3 steps. That's all it takes.</h2>
+  <p class="section-sub reveal">No setup, no charts, no confusion. Just open Telegram and you're in.</p>
+
+  <div class="get-started-steps">
+
+    <div class="gs-step reveal">
+      <div class="gs-step-num">1</div>
+      <div class="gs-step-icon">💬</div>
+      <h3>Message on Telegram</h3>
+      <p>Tap the button below and send a message to Chee AI Pro on Telegram. Takes 10 seconds.</p>
+    </div>
+
+    <div class="gs-arrow reveal">→</div>
+
+    <div class="gs-step reveal">
+      <div class="gs-step-num">2</div>
+      <div class="gs-step-icon">📲</div>
+      <h3>Join the channel</h3>
+      <p>You'll receive a link to join the private signal channel — one tap and you're in.</p>
+    </div>
+
+    <div class="gs-arrow reveal">→</div>
+
+    <div class="gs-step reveal">
+      <div class="gs-step-num">3</div>
+      <div class="gs-step-icon">🏆</div>
+      <h3>Get signals</h3>
+      <p>Gold & Silver signals sent straight to your phone. Entry, TP1, TP2, SL — all included.</p>
+    </div>
+
+  </div>
+
+  <div class="gs-cta-row">
+    <a href="https://t.me/CheeAIPro" target="_blank" class="btn-gold magnetic reveal" style="font-size:15px;padding:14px 40px;">
+      💬 Message Chee on Telegram
+    </a>
+    <p class="gs-cta-note reveal">Free to join · No credit card required</p>
+  </div>
+</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
 <!-- CTA -->
 <div class="cta-section" id="contact">
   <div class="cta-glow"></div>
@@ -1088,7 +1182,7 @@
   <div class="section-tag reveal">Ready to start?</div>
   <h2 class="reveal">Stop guessing.<br>Start trading with AI.</h2>
   <p class="reveal">Chee AI Pro runs 24/5 so you never miss a setup — even while you sleep.</p>
-  <a href="https://t.me/CheeHeeLoh" target="_blank" class="btn-gold magnetic reveal" id="mainCta" style="font-size:16px;padding:16px 44px;">
+  <a href="https://t.me/CheeAIPro" target="_blank" class="btn-gold magnetic reveal" id="mainCta" style="font-size:16px;padding:16px 44px;">
     💬 Message Chee on Telegram
   </a>
 </div>
@@ -1102,6 +1196,7 @@
     <a href="#features">Features</a>
     <a href="#signals">Signals</a>
     <a href="#how">How it works</a>
+    <a href="#start">Get started</a>
     <a href="#faq">FAQ</a>
   </div>
   Signals via <span>Telegram</span> · Optimised for <span>MT5</span> · Powered by <span>Chee AI</span><br><br>

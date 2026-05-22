@@ -473,7 +473,6 @@
     <li><a href="#features">Features</a></li>
     <li><a href="#signals">Signals</a></li>
     <li><a href="#how">How it works</a></li>
-    <li><a href="#calculator">Calculator</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get access</a>
@@ -539,25 +538,6 @@
     <div class="feat reveal"><div class="feat-icon-wrap">📲</div><h3>Instant Telegram delivery</h3><p>Signals, TP hits, and SL hits are all sent to your phone via Telegram the second the 15-minute bar confirms — never miss a move again.</p></div>
     <div class="feat reveal reveal-delay-1"><div class="feat-icon-wrap">📊</div><h3>Institutional-grade logic</h3><p>Built on the same price action principles used by professional traders to identify high-probability entries with precision timing.</p></div>
     <div class="feat reveal reveal-delay-2"><div class="feat-icon-wrap">⚡</div><h3>Adaptive risk/reward</h3><p>When AI confidence is high, TP1 extends for a better reward. When it is low, it stays conservative to protect your capital.</p></div>
-  </div>
-</section>
-
-<div class="full-border"></div>
-
-<!-- LIVE FEED -->
-<section id="livefeed" style="text-align:center;">
-  <div class="section-tag reveal">Live activity</div>
-  <h2 class="reveal">Signals firing right now</h2>
-  <p class="section-sub reveal" style="margin: 0 auto 3rem;">A simulation of how the live feed looks — signals, TP hits, and SL alerts all in one stream.</p>
-  <div class="live-feed-wrap reveal">
-    <div class="live-feed-header">
-      <div class="live-feed-title">
-        <div class="live-dot"></div>
-        Chee AI Signal Feed
-      </div>
-      <span style="font-size:12px;color:var(--text3);font-family:monospace;letter-spacing:0.06em;">LIVE</span>
-    </div>
-    <div class="live-feed-body" id="liveFeed"></div>
   </div>
 </section>
 
@@ -650,83 +630,6 @@
 
 <div class="full-border"></div>
 
-<!-- PROFIT CALCULATOR -->
-<section id="calculator">
-  <div class="section-tag reveal">Profit calculator</div>
-  <h2 class="reveal">See what a signal could return</h2>
-  <p class="section-sub reveal">Enter your lot size and see estimated profit for Gold or Silver signals based on typical ATR moves.</p>
-  <div class="calculator-wrap reveal">
-    <div class="calc-grid">
-      <div class="calc-field">
-        <label>Asset</label>
-        <select id="calcAsset" onchange="calcProfit()">
-          <option value="gold">👑 Gold (XAUUSD)</option>
-          <option value="silver">🥈 Silver (XAGUSD)</option>
-        </select>
-      </div>
-      <div class="calc-field">
-        <label>Your Lot Size</label>
-        <input type="number" id="calcLot" value="0.10" min="0.01" step="0.01" oninput="calcProfit()" placeholder="e.g. 0.10">
-      </div>
-    </div>
-    <div class="calc-results">
-      <div class="calc-result">
-        <div class="r-label">TP1 Profit</div>
-        <div class="r-value green" id="rTP1">$100</div>
-      </div>
-      <div class="calc-result highlight">
-        <div class="r-label">TP2 Profit</div>
-        <div class="r-value green" id="rTP2">$250</div>
-      </div>
-      <div class="calc-result">
-        <div class="r-label">Max Risk (SL)</div>
-        <div class="r-value" style="color:var(--orange);" id="rSL">-$140</div>
-      </div>
-    </div>
-    <div class="calc-note">⚠️ Estimates based on typical ATR moves. Actual results vary. This is not financial advice — always trade with a risk management plan.</div>
-  </div>
-</section>
-
-<div class="full-border"></div>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-tag reveal">What traders say</div>
-  <h2 class="reveal">Real results, real people</h2>
-  <p class="section-sub reveal">Traders using Chee AI Pro have changed how they approach Gold and Silver — here's what they say.</p>
-  <div class="testimonials-grid">
-    <div class="testi-card reveal">
-      <span class="testi-tag">TP2 HIT</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"I was sceptical at first but the first signal I took hit TP2 within 2 hours. The confidence score really helps — when it says HIGH I go full size now."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:#2d6a4f;">A</div>
-        <div><div class="testi-name">Ahmad R.</div><div class="testi-role">Retail trader · Malaysia</div></div>
-      </div>
-    </div>
-    <div class="testi-card reveal reveal-delay-1">
-      <span class="testi-tag">3 WEEKS IN</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"The Telegram alerts are instant. By the time I see the notification, open my broker, and enter — the price has barely moved from the EP. Crazy accurate timing."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:#7b2d8b;">J</div>
-        <div><div class="testi-name">Jason T.</div><div class="testi-role">Part-time trader · Singapore</div></div>
-      </div>
-    </div>
-    <div class="testi-card reveal reveal-delay-2">
-      <span class="testi-tag">GOLD ONLY</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"I only trade Gold and this system is built exactly for it. The automatic SL alert saved me twice already — I didn't have to watch the screen at all."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:#c9560a;">M</div>
-        <div><div class="testi-name">Michelle K.</div><div class="testi-role">Full-time trader · KL</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="full-border"></div>
-
 <!-- FAQ -->
 <section id="faq">
   <div class="section-tag reveal">FAQ</div>
@@ -745,7 +648,7 @@
         What broker do I need?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-a"><div class="faq-a-inner">The signals are optimised for XM MT5, but they work with any broker that offers XAUUSD (Gold) and XAGUSD (Silver). The entry prices are universal — your broker just needs to support these instruments.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">The signals work with any MT5 broker that offers XAUUSD (Gold) and XAGUSD (Silver). The entry prices are universal — your broker just needs to support these instruments.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
@@ -759,7 +662,7 @@
         What lot size should I use?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-a"><div class="faq-a-inner">That is entirely up to you and depends on your account size and risk tolerance. As a general guide, never risk more than 1–2% of your account on a single trade. Use the calculator above to see estimated returns before deciding.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">That is entirely up to you and depends on your account size and risk tolerance. As a general guide, never risk more than 1–2% of your account on a single trade.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
@@ -795,10 +698,9 @@
     <a href="#features">Features</a>
     <a href="#signals">Signals</a>
     <a href="#how">How it works</a>
-    <a href="#calculator">Calculator</a>
     <a href="#faq">FAQ</a>
   </div>
-  Signals via <span>Telegram</span> · Optimised for <span>XM MT5</span> · Powered by <span>Chee AI</span><br><br>
+  Signals via <span>Telegram</span> · Optimised for <span>MT5</span> · Powered by <span>Chee AI</span><br><br>
   © 2026 Chee AI Pro · All rights reserved
 </footer>
 
@@ -950,43 +852,6 @@
 })();
 
 /* ══════════════════════════════════════
-   LIVE SIGNAL FEED
-══════════════════════════════════════ */
-(function() {
-  const feed = document.getElementById('liveFeed');
-  const signals = [
-    { type:'buy',  asset:'👑 GOLD',   detail:'EP 3285.50 · TP1 3295.50 · TP2 3310.20', conf:'81%', time:'09:45' },
-    { type:'sell', asset:'🥈 SILVER', detail:'EP 32.450 · TP1 32.120 · TP2 31.800',    conf:'74%', time:'09:52' },
-    { type:'tp',   asset:'👑 GOLD',   detail:'TP1 HIT → Exit 3295.50 (+$100)',          conf:'',    time:'10:18' },
-    { type:'buy',  asset:'👑 GOLD',   detail:'EP 3297.00 · TP1 3308.00 · TP2 3320.00', conf:'88%', time:'10:35' },
-    { type:'tp',   asset:'🥈 SILVER', detail:'TP1 HIT → Exit 32.120 (+$42)',            conf:'',    time:'10:51' },
-    { type:'tp',   asset:'👑 GOLD',   detail:'TP2 HIT → Exit 3310.20 (+$248)',          conf:'',    time:'11:30' },
-    { type:'sell', asset:'🥈 SILVER', detail:'EP 32.800 · TP1 32.480 · TP2 32.160',    conf:'70%', time:'11:44' },
-    { type:'sl',   asset:'🥈 SILVER', detail:'SL HIT → Exit 33.050 (-$37)',             conf:'',    time:'12:02' },
-    { type:'buy',  asset:'👑 GOLD',   detail:'EP 3315.00 · TP1 3326.50 · TP2 3341.00', conf:'85%', time:'12:30' },
-    { type:'tp',   asset:'👑 GOLD',   detail:'TP2 HIT → Exit 3341.00 (+$310)',          conf:'',    time:'13:55' },
-  ];
-  const labels = { buy:'BUY', sell:'SELL', tp:'TP HIT', sl:'SL HIT' };
-  let idx = 0;
-
-  function addItem() {
-    const s = signals[idx % signals.length];
-    const div = document.createElement('div');
-    div.className = 'feed-item';
-    div.innerHTML = `
-      <span class="feed-badge ${s.type}">${labels[s.type]}</span>
-      <span class="feed-details"><strong>${s.asset}</strong> · ${s.detail}${s.conf ? ` <span class="feed-conf">(${s.conf})</span>` : ''}</span>
-      <span class="feed-time">${s.time}</span>
-    `;
-    feed.insertBefore(div, feed.firstChild);
-    if (feed.children.length > 7) feed.removeChild(feed.lastChild);
-    idx++;
-  }
-  for (let i = 0; i < 4; i++) addItem();
-  setInterval(addItem, 2800);
-})();
-
-/* ══════════════════════════════════════
    FLOATING CTA
 ══════════════════════════════════════ */
 (function() {
@@ -995,23 +860,6 @@
     btn.classList.toggle('visible', window.scrollY > window.innerHeight * 0.65);
   });
 })();
-
-/* ══════════════════════════════════════
-   PROFIT CALCULATOR
-══════════════════════════════════════ */
-function calcProfit() {
-  const asset = document.getElementById('calcAsset').value;
-  const lot = parseFloat(document.getElementById('calcLot').value) || 0;
-  const cfg = {
-    gold:   { pip: 10,   tp1: 10, tp2: 25, sl: 14 },
-    silver: { pip: 2.50, tp1: 12, tp2: 30, sl: 14 },
-  };
-  const c = cfg[asset];
-  document.getElementById('rTP1').textContent = '$' + (lot * c.pip * c.tp1).toFixed(2);
-  document.getElementById('rTP2').textContent = '$' + (lot * c.pip * c.tp2).toFixed(2);
-  document.getElementById('rSL').textContent  = '-$' + (lot * c.pip * c.sl).toFixed(2);
-}
-calcProfit();
 
 /* ══════════════════════════════════════
    FAQ ACCORDION

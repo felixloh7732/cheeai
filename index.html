@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chee AI Pro — Gold & Silver Trading Signals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #F0C040;
+    --gold-dim: #c9970a;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --purple-mid: #7F77DD;
+    --green: #00ffbb;
+    --blue: #00e5ff;
+    --orange: #ff9800;
+    --red: #ff3a5a;
+    --bg: #080b10;
+    --bg2: #0d1117;
+    --bg3: #1e222d;
+    --bg4: #252a36;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8eaf0;
+    --text2: #8b92a8;
+    --text3: #555e74;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .nav-logo { font-family: 'Syne', sans-serif; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(8,11,16,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--gold); color: #000; border: none;
+    padding: 8px 20px; border-radius: var(--radius-sm);
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 14px;
+    cursor: pointer; transition: opacity 0.2s; text-decoration: none;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 8rem 2rem 4rem;
+    position: relative; z-index: 1;
+  }
+  .hero-glow {
+    position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(83,74,183,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute; top: 30%; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 300px;
+    background: radial-gradient(ellipse, rgba(240,192,64,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(240,192,64,0.1); border: 0.5px solid rgba(240,192,64,0.3);
+    color: var(--gold); font-size: 12px; font-weight: 500;
+    padding: 6px 14px; border-radius: 40px; margin-bottom: 2rem;
+    letter-spacing: 0.06em; animation: fadeDown 0.6s ease both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); animation: pulse 2s infinite;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 7vw, 78px); font-weight: 700;
+    line-height: 1.05; letter-spacing: -0.03em;
+    margin-bottom: 1.5rem; animation: fadeUp 0.7s ease 0.1s both;
+  }
+  .hero h1 .line2 {
+    display: block;
+    background: linear-gradient(90deg, var(--gold) 0%, #fff 60%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--text2); max-width: 520px;
+    margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.7;
+    animation: fadeUp 0.7s ease 0.2s both;
+  }
+  .hero-btns {
+    display: flex; gap: 12px; justify-content: center;
+    flex-wrap: wrap; animation: fadeUp 0.7s ease 0.3s both;
+  }
+  .btn-gold {
+    background: var(--gold); color: #000; border: none;
+    padding: 14px 32px; border-radius: var(--radius-sm);
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 15px;
+    cursor: pointer; transition: transform 0.15s, opacity 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-gold:hover { transform: translateY(-1px); opacity: 0.9; }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    border: 0.5px solid var(--border2); padding: 14px 32px;
+    border-radius: var(--radius-sm); font-family: 'Syne', sans-serif;
+    font-size: 15px; cursor: pointer; transition: background 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--bg3); }
+
+  .ticker-wrap {
+    width: 100%; overflow: hidden;
+    border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+    background: var(--bg2); padding: 10px 0; position: relative; z-index: 1;
+  }
+  .ticker { display: flex; gap: 3rem; animation: ticker 20s linear infinite; white-space: nowrap; }
+  .ticker-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); flex-shrink: 0; }
+  .ticker-item .up { color: var(--green); }
+  .ticker-item .dn { color: var(--red); }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px; background: var(--border);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    position: relative; z-index: 1;
+  }
+  .stat-box { background: var(--bg2); padding: 2rem 1.5rem; text-align: center; }
+  .stat-box .num { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 700; color: var(--gold); letter-spacing: -0.02em; }
+  .stat-box .lbl { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+  section { position: relative; z-index: 1; padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 1rem; text-transform: uppercase; }
+  section h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.15; }
+  .section-sub { font-size: 16px; color: var(--text2); max-width: 500px; line-height: 1.7; margin-bottom: 3rem; font-weight: 300; }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  }
+  .feat { background: var(--bg2); padding: 2rem; transition: background 0.2s; }
+  .feat:hover { background: var(--bg3); }
+  .feat-icon-wrap {
+    width: 44px; height: 44px; border-radius: var(--radius-sm);
+    background: rgba(240,192,64,0.1); border: 0.5px solid rgba(240,192,64,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem; font-size: 20px;
+  }
+  .feat h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .feat p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+  .demo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 680px) { .demo-wrap { grid-template-columns: 1fr; } }
+
+  .signal-card { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); overflow: hidden; }
+  .signal-card-header {
+    background: var(--bg3); padding: 10px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text2);
+  }
+  .signal-card-header .dot-row { display: flex; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+  .signal-body { padding: 1.25rem 1.5rem; font-family: 'Courier New', monospace; font-size: 13px; line-height: 2; color: #c9d1d9; }
+  .s-green { color: var(--green); font-weight: 500; }
+  .s-blue  { color: var(--blue); }
+  .s-orange{ color: var(--orange); }
+  .s-purple{ color: #c084fc; }
+  .s-gold  { color: var(--gold); }
+  .s-gray  { color: var(--text3); }
+  .s-badge {
+    display: inline-block; background: rgba(240,192,64,0.15);
+    border: 0.5px solid rgba(240,192,64,0.3); color: var(--gold);
+    font-size: 10px; padding: 2px 8px; border-radius: 4px;
+    letter-spacing: 0.06em; margin-bottom: 4px;
+  }
+
+  .tg-mock { background: #17212b; border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border2); }
+  .tg-top { background: #232e3c; padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+  .tg-av {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--purple);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: #fff; flex-shrink: 0;
+  }
+  .tg-info .tg-name { font-size: 14px; font-weight: 500; color: #fff; }
+  .tg-info .tg-online { font-size: 11px; color: var(--green); }
+  .tg-messages { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .tg-bubble {
+    background: #182533; border-radius: 8px 8px 8px 2px;
+    padding: 10px 14px; font-size: 12.5px; color: #c5d0db;
+    line-height: 1.9; font-family: 'Courier New', monospace; max-width: 85%;
+  }
+  .tg-ts { font-size: 10px; color: #4e6177; text-align: right; margin-top: 3px; }
+  .tg-gn { color: var(--green); font-weight: 500; }
+  .tg-bl { color: #6fa8dc; }
+  .tg-gd { color: var(--gold); }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .step { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: border-color 0.2s; }
+  .step:hover { border-color: rgba(240,192,64,0.3); }
+  .step-n { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .step h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .step p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  .assets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .asset-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 2rem; transition: border-color 0.2s; }
+  .asset-card:hover { border-color: var(--border2); }
+  .asset-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+  .asset-icon { font-size: 28px; }
+  .asset-header h3 { font-size: 18px; font-weight: 700; }
+  .asset-header .ticker-tag { font-size: 11px; color: var(--text3); font-family: monospace; margin-top: 2px; }
+  .asset-specs { display: flex; flex-direction: column; gap: 10px; }
+  .spec-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 0.5px solid var(--border); font-size: 13px; }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-lbl { color: var(--text2); }
+  .spec-val { font-weight: 500; font-family: monospace; }
+  .spec-val.gold { color: var(--gold); }
+
+  .cta-section { text-align: center; padding: 6rem 2rem; position: relative; z-index: 1; border-top: 0.5px solid var(--border); background: var(--bg2); }
+  .cta-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 500px; height: 300px; background: radial-gradient(ellipse at top, rgba(240,192,64,0.08) 0%, transparent 70%); pointer-events: none; }
+  .cta-section h2 { font-size: clamp(28px, 5vw, 52px); font-weight: 700; letter-spacing: -0.03em; max-width: 600px; margin: 0 auto 1rem; line-height: 1.1; }
+  .cta-section p { font-size: 16px; color: var(--text2); margin-bottom: 2.5rem; font-weight: 300; }
+  .cta-section .section-tag { margin-bottom: 1rem; }
+
+  footer { padding: 2rem; text-align: center; font-size: 13px; color: var(--text3); border-top: 0.5px solid var(--border); position: relative; z-index: 1; }
+  footer span { color: var(--gold); }
+
+  .full-border { width: 100%; height: 0.5px; background: var(--border); position: relative; z-index: 1; }
+
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:translateY(0); } }
+  @keyframes pulse    { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  @keyframes ticker   { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    section { padding: 3.5rem 1.5rem; }
+    .features-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Chee <span>AI</span> Pro</div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#signals">Signals</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#assets">Assets</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get access</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    Live signals · Gold & Silver · 15M timeframe
+  </div>
+  <h1>
+    Trade like the<br>
+    <span class="line2">smart money does.</span>
+  </h1>
+  <p class="hero-sub">AI-powered trading signals for Gold and Silver delivered straight to your Telegram. Real entries, real TP levels, real SL — automated.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-gold">Get access now</a>
+    <a href="#how" class="btn-outline">See how it works</a>
+  </div>
+</div>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item">👑 XAUUSD &nbsp;<span class="up">▲ BUY SIGNAL</span>&nbsp; EP: 3285.50 · TP1: 3295.50 · SL: 3271.80</div>
+    <div class="ticker-item">🥈 XAGUSD &nbsp;<span class="dn">▼ SELL SIGNAL</span>&nbsp; EP: 32.450 · TP1: 32.120 · SL: 32.810</div>
+    <div class="ticker-item">👑 XAUUSD &nbsp;<span class="up">✅ TP2 HIT</span>&nbsp; Exit: 3310.20</div>
+    <div class="ticker-item">🥈 XAGUSD &nbsp;<span class="up">✅ TP1 HIT</span>&nbsp; Exit: 32.120</div>
+    <div class="ticker-item">👑 XAUUSD &nbsp;<span class="up">▲ BUY SIGNAL</span>&nbsp; Conf: 82% · RR: HIGH</div>
+    <div class="ticker-item">👑 XAUUSD &nbsp;<span class="up">▲ BUY SIGNAL</span>&nbsp; EP: 3285.50 · TP1: 3295.50 · SL: 3271.80</div>
+    <div class="ticker-item">🥈 XAGUSD &nbsp;<span class="dn">▼ SELL SIGNAL</span>&nbsp; EP: 32.450 · TP1: 32.120 · SL: 32.810</div>
+    <div class="ticker-item">👑 XAUUSD &nbsp;<span class="up">✅ TP2 HIT</span>&nbsp; Exit: 3310.20</div>
+    <div class="ticker-item">🥈 XAGUSD &nbsp;<span class="up">✅ TP1 HIT</span>&nbsp; Exit: 32.120</div>
+    <div class="ticker-item">👑 XAUUSD &nbsp;<span class="up">▲ BUY SIGNAL</span>&nbsp; Conf: 82% · RR: HIGH</div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-box"><div class="num">15M</div><div class="lbl">Precision timeframe</div></div>
+  <div class="stat-box"><div class="num">3 TPs</div><div class="lbl">Per every signal</div></div>
+  <div class="stat-box"><div class="num">AI</div><div class="lbl">Confidence scoring</div></div>
+  <div class="stat-box"><div class="num">Auto</div><div class="lbl">TP / SL tracking</div></div>
+  <div class="stat-box"><div class="num">24/5</div><div class="lbl">Market coverage</div></div>
+</div>
+
+<section id="features">
+  <div class="section-tag">What you get</div>
+  <h2>Everything in one signal</h2>
+  <p class="section-sub">No more staring at charts. Chee AI reads the market and tells you exactly what to do — entry, targets, and stop loss included.</p>
+  <div class="features-grid">
+    <div class="feat"><div class="feat-icon-wrap">🤖</div><h3>AI confidence score</h3><p>Every signal is graded 0–100% using ADX, RSI, SMC confluence, and trend alignment — so you know how strong the setup is before entering.</p></div>
+    <div class="feat"><div class="feat-icon-wrap">🎯</div><h3>Triple take profit</h3><p>TP1, TP2, and TP3 are calculated automatically using ATR multipliers tuned for each asset. Scale out at every level without manual math.</p></div>
+    <div class="feat"><div class="feat-icon-wrap">🛡️</div><h3>Auto SL protection</h3><p>Stop loss is placed intelligently using ATR dynamic mode. You get an instant Telegram alert the moment it is hit — no screen watching needed.</p></div>
+    <div class="feat"><div class="feat-icon-wrap">📲</div><h3>Instant Telegram delivery</h3><p>Signals, TP hits, and SL hits are all sent to your phone via Telegram the second the 15-minute bar confirms — never miss a move again.</p></div>
+    <div class="feat"><div class="feat-icon-wrap">📊</div><h3>Smart Money Concepts</h3><p>Built on order blocks, fair value gaps, and liquidity sweeps — the same methods institutional traders use to find high-probability entries.</p></div>
+    <div class="feat"><div class="feat-icon-wrap">⚡</div><h3>Adaptive risk/reward</h3><p>When AI confidence is high, TP1 extends to 1.5× ATR for a better reward. When it is low, it stays conservative at 1.0× ATR to protect your capital.</p></div>
+  </div>
+</section>
+
+<div class="full-border"></div>
+
+<section id="signals">
+  <div class="section-tag">Live signal example</div>
+  <h2>This is what lands in your Telegram</h2>
+  <p class="section-sub">Clean, structured, and everything you need to act immediately — no confusion, no missing information.</p>
+  <div class="demo-wrap">
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="signal-card">
+        <div class="signal-card-header">
+          <div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+          <span>entry signal · 09:45</span>
+        </div>
+        <div class="signal-body">
+          <div class="s-badge">NEW SIGNAL</div><br>
+          <span class="s-green">🚀 BUY SIGNAL</span><br>
+          👑 GOLD<br>──────────────────<br>
+          EP:  <span class="s-gold">3285.50</span><br>
+          TP1: <span class="s-blue">3295.50</span><br>
+          TP2: <span class="s-blue">3310.20</span><br>
+          TP3: <span class="s-purple">3325.00</span><br>
+          SL:  <span class="s-orange">3271.80</span><br>
+          ──────────────────<br>
+          Conf: <span class="s-green">78%</span> | RR: HIGH
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-card-header">
+          <div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+          <span>tp2 hit · 11:30</span>
+        </div>
+        <div class="signal-body">
+          <span class="s-blue">🎯🎯 TP2 HIT 🎯🎯</span><br>
+          👑 GOLD<br><br>
+          <span class="s-gray">BUY | EP: 3285.50</span><br>
+          TP2: <span class="s-blue">3310.20</span><br>
+          Exit: <span class="s-green">3310.20</span>
+        </div>
+      </div>
+    </div>
+    <div class="tg-mock">
+      <div class="tg-top">
+        <div class="tg-av">C</div>
+        <div class="tg-info">
+          <div class="tg-name">Chee AI Gold</div>
+          <div class="tg-online">● online</div>
+        </div>
+      </div>
+      <div class="tg-messages">
+        <div class="tg-bubble">
+          ⚠️ NEW SIGNAL ⚠️<br>👑 GOLD<br><br>
+          <span class="tg-gn">🚀 BUY SIGNAL</span><br>
+          EP: <span class="tg-gd">3285.50</span><br>
+          TP1: <span class="tg-bl">3295.50</span><br>
+          TP2: <span class="tg-bl">3310.20</span><br>
+          TP3: <span style="color:#c084fc">3325.00</span><br>
+          SL: <span style="color:#ff9800">3271.80</span><br>
+          Conf: <span class="tg-gn">78%</span> | RR: HIGH
+          <div class="tg-ts">09:45 ✓✓</div>
+        </div>
+        <div class="tg-bubble">
+          🎯🎯 TP2 HIT 🎯🎯<br>👑 GOLD<br><br>
+          BUY | EP: 3285.50<br>
+          TP2: <span class="tg-bl">3310.20</span><br>
+          Exit: <span class="tg-gn">3310.20</span>
+          <div class="tg-ts">11:30 ✓✓</div>
+        </div>
+        <div class="tg-bubble">
+          💎💎💎 TP3 HIT 💎💎💎<br>👑 GOLD<br><br>
+          BUY | EP: 3285.50<br>
+          TP3: <span style="color:#c084fc">3325.00</span><br>
+          Exit: <span class="tg-gn">3325.00</span>
+          <div class="tg-ts">13:15 ✓✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-border"></div>
+
+<section id="how">
+  <div class="section-tag">How it works</div>
+  <h2>From market move to your phone in seconds</h2>
+  <p class="section-sub">Fully automated from signal detection all the way to Telegram delivery. You just act on it.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">STEP 01</div><h3>Market scanned</h3><p>The AI continuously scans Gold and Silver on the 15-minute chart using SMC logic — 24 hours a day, 5 days a week.</p></div>
+    <div class="step"><div class="step-n">STEP 02</div><h3>Signal detected</h3><p>An entry point, three take profits, and a stop loss are calculated instantly the moment a valid SMC setup forms.</p></div>
+    <div class="step"><div class="step-n">STEP 03</div><h3>AI scores it</h3><p>The signal is graded 0–100% based on trend strength, RSI momentum, ADX direction, and SMC confluence.</p></div>
+    <div class="step"><div class="step-n">STEP 04</div><h3>Alert sent</h3><p>You receive the full signal on Telegram within seconds of the 15-minute bar closing — entry, TPs, SL, and confidence all included.</p></div>
+    <div class="step"><div class="step-n">STEP 05</div><h3>TP/SL tracked</h3><p>The system keeps watching and sends you a follow-up alert the moment any TP level or the SL is hit — automatically.</p></div>
+  </div>
+</section>
+
+<div class="full-border"></div>
+
+<section id="assets">
+  <div class="section-tag">Supported assets</div>
+  <h2>Built for precious metals</h2>
+  <p class="section-sub">Tuned specifically for Gold and Silver — different multipliers, lot sizes, and risk settings for each asset.</p>
+  <div class="assets-grid">
+    <div class="asset-card">
+      <div class="asset-header"><div class="asset-icon">👑</div><div><h3>Gold</h3><div class="ticker-tag">XAUUSD · XM MT5</div></div></div>
+      <div class="asset-specs">
+        <div class="spec-row"><span class="spec-lbl">Default lot size</span><span class="spec-val gold">0.10</span></div>
+        <div class="spec-row"><span class="spec-lbl">Pip value</span><span class="spec-val">$10.00 / pip</span></div>
+        <div class="spec-row"><span class="spec-lbl">TP2 multiplier</span><span class="spec-val">2.0× ATR</span></div>
+        <div class="spec-row"><span class="spec-lbl">TP3 multiplier</span><span class="spec-val">3.0× ATR</span></div>
+        <div class="spec-row"><span class="spec-lbl">SL multiplier</span><span class="spec-val">1.5× ATR</span></div>
+        <div class="spec-row"><span class="spec-lbl">Telegram bot</span><span class="spec-val gold">Dedicated Gold bot</span></div>
+      </div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-header"><div class="asset-icon">🥈</div><div><h3>Silver</h3><div class="ticker-tag">XAGUSD · XM MT5</div></div></div>
+      <div class="asset-specs">
+        <div class="spec-row"><span class="spec-lbl">Default lot size</span><span class="spec-val gold">0.05</span></div>
+        <div class="spec-row"><span class="spec-lbl">Pip value</span><span class="spec-val">$2.50 / pip</span></div>
+        <div class="spec-row"><span class="spec-lbl">TP2 multiplier</span><span class="spec-val">3.0× ATR</span></div>
+        <div class="spec-row"><span class="spec-lbl">TP3 multiplier</span><span class="spec-val">4.5× ATR</span></div>
+        <div class="spec-row"><span class="spec-lbl">SL multiplier</span><span class="spec-val">1.5× ATR</span></div>
+        <div class="spec-row"><span class="spec-lbl">Telegram bot</span><span class="spec-val gold">Dedicated Silver bot</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section" id="contact">
+  <div class="cta-glow"></div>
+  <div class="section-tag">Ready to start?</div>
+  <h2>Stop guessing.<br>Start trading with AI.</h2>
+  <p>Chee AI Pro runs 24/5 so you never miss a setup — even while you sleep.</p>
+  <a href="https://t.me/YOUR_TELEGRAM_USERNAME" class="btn-gold" style="font-size:16px;padding:14px 40px;">
+    Contact us on Telegram
+  </a>
+</div>
+
+<footer>
+  Built with <span>Smart Money Concepts</span> · Signals via <span>Telegram</span> · Optimised for <span>XM MT5</span><br><br>
+  © 2026 Chee AI Pro · All rights reserved
+</footer>
+
+</body>
+</html>

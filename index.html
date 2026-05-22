@@ -561,6 +561,89 @@
   .risk-banner p { font-size: 12px; color: var(--text3); line-height: 1.6; max-width: 800px; margin: 0 auto; }
   .risk-banner strong { color: rgba(255,152,0,0.7); font-weight: 500; }
 
+  /* ── SCROLL PROGRESS BAR ── */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 2.5px; width: 0%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold), #fff8dc);
+    z-index: 9999; transition: width 0.05s linear;
+    box-shadow: 0 0 8px rgba(240,192,64,0.6);
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  body { cursor: none; }
+  #cursor {
+    position: fixed; pointer-events: none; z-index: 99999;
+    width: 28px; height: 28px;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease, opacity 0.2s;
+  }
+  #cursor svg { width: 100%; height: 100%; }
+  #cursor.hovering { transform: translate(-50%, -50%) scale(1.4); }
+  a, button { cursor: none; }
+
+  /* ── PLATFORM LOGOS STRIP ── */
+  .logos-strip {
+    background: var(--bg2); border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    padding: 1.5rem 2rem; position: relative; z-index: 1;
+  }
+  .logos-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .logos-label { font-size: 11px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+  .logos-divider { width: 1px; height: 18px; background: var(--border2); }
+  .logo-badge {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--text2); transition: color 0.2s;
+    opacity: 0.7; filter: grayscale(1); transition: filter 0.3s, opacity 0.3s;
+  }
+  .logo-badge:hover { filter: grayscale(0); opacity: 1; }
+  .logo-badge .logo-icon { font-size: 20px; }
+  .logo-badge .logo-tv {
+    font-size: 13px; background: #131722; border: 1px solid #2a2e39;
+    color: #787b86; padding: 3px 8px; border-radius: 4px; font-family: monospace;
+  }
+
+  /* ── SIGNAL TABS ── */
+  .tab-bar {
+    display: flex; gap: 0; margin-bottom: 0;
+    background: var(--bg3); border-radius: var(--radius) var(--radius) 0 0;
+    border: 0.5px solid var(--border2); border-bottom: none; overflow: hidden;
+  }
+  .tab-btn {
+    flex: 1; padding: 12px 20px; border: none; background: transparent;
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--text3); cursor: none; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .tab-btn.active { background: var(--bg2); color: var(--gold); border-bottom: 2px solid var(--gold); }
+  .tab-btn:hover:not(.active) { color: var(--text2); background: rgba(255,255,255,0.03); }
+  .tab-panel { display: none; flex-direction: column; gap: 16px; }
+  .tab-panel.active { display: flex; }
+  .tab-wrap {
+    border: 0.5px solid var(--border2); border-radius: 0 0 var(--radius) var(--radius);
+    background: var(--bg2); padding: 1.5rem; border-top: none;
+  }
+
+  /* ── ANIMATED SHIMMER DIVIDER ── */
+  .shimmer-divider {
+    width: 100%; height: 1px; position: relative; z-index: 1;
+    background: var(--border); overflow: hidden;
+  }
+  .shimmer-divider::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 60%;
+    height: 100%; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: shimmerLine 2.5s ease forwards; opacity: 0;
+  }
+  .shimmer-divider.animate::after { opacity: 1; }
+  @keyframes shimmerLine { 0% { left:-60%; opacity:0; } 20% { opacity:1; } 80% { opacity:1; } 100% { left:100%; opacity:0; } }
+
+  /* ── MAGNETIC BUTTON ── */
+  .magnetic { transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s; display: inline-block; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
     nav { padding: 1rem; }
@@ -573,6 +656,18 @@
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div id="progress-bar"></div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor">
+  <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="14" y1="2" x2="14" y2="26" stroke="#F0C040" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="2" y1="14" x2="26" y2="14" stroke="#F0C040" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="14" cy="14" r="3" stroke="#F0C040" stroke-width="1.2" fill="none" opacity="0.6"/>
+  </svg>
+</div>
 
 <!-- FLOATING CTA -->
 <a href="https://t.me/CheeHeeLoh" target="_blank" class="float-cta" id="floatCta">
@@ -603,9 +698,9 @@
       <div class="badge-dot"></div>
       Live signals · Gold & Silver · 15M timeframe
     </div>
-    <h1>
-      Trade like the<br>
-      <span class="line2">smart money does.</span>
+    <h1 id="hero-headline" aria-label="Trade like the smart money does.">
+      <span id="tw-line1"></span><br>
+      <span class="line2" id="tw-line2"></span>
     </h1>
     <p class="hero-sub">AI-powered trading signals for Gold and Silver delivered straight to your Telegram. Real entries, real TP levels, real SL — automated.</p>
     <div class="hero-btns">
@@ -628,6 +723,27 @@
     <div class="ticker-item">👑 XAUUSD &nbsp;<span class="up">✅ TP2 HIT</span>&nbsp; Exit: 3310.20</div>
     <div class="ticker-item">🥈 XAGUSD &nbsp;<span class="up">✅ TP1 HIT</span>&nbsp; Exit: 32.120</div>
     <div class="ticker-item">👑 XAUUSD &nbsp;<span class="up">▲ BUY SIGNAL</span>&nbsp; Conf: 82% · RR: HIGH</div>
+  </div>
+</div>
+
+<!-- PLATFORM LOGOS -->
+<div class="logos-strip">
+  <div class="logos-inner">
+    <span class="logos-label">Works with</span>
+    <div class="logos-divider"></div>
+    <div class="logo-badge"><span class="logo-icon">📊</span><span class="logo-tv">TradingView</span></div>
+    <div class="logo-badge">
+      <span class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#29a8eb"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.4 11.31c-.178.795-.643 .993-1.304.617l-3.6-2.652-1.737 1.672c-.192.192-.352.352-.72.352l.257-3.647 6.625-5.987c.288-.257-.063-.4-.447-.143L6.513 14.87l-3.553-1.11c-.772-.242-.787-.772.162-1.143l13.89-5.356c.643-.232 1.205.143.55 1.187z"/></svg>
+      </span>
+      <span>Telegram</span>
+    </div>
+    <div class="logo-badge">
+      <span class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#4a90d9"><rect width="24" height="24" rx="4" fill="#1a3a5c"/><text x="12" y="16" text-anchor="middle" font-size="9" font-weight="bold" fill="#4a90d9" font-family="Arial">MT5</text></svg>
+      </span>
+      <span>MetaTrader 5</span>
+    </div>
   </div>
 </div>
 
@@ -655,7 +771,7 @@
   </div>
 </section>
 
-<div class="full-border"></div>
+<div class="shimmer-divider"></div>
 
 <!-- WHY GOLD & SILVER -->
 <section id="why">
@@ -690,7 +806,7 @@
   </div>
 </section>
 
-<div class="full-border"></div>
+<div class="shimmer-divider"></div>
 
 <!-- PHONE MOCKUP -->
 <section id="mobile">
@@ -747,7 +863,7 @@
   </div>
 </section>
 
-<div class="full-border"></div>
+<div class="shimmer-divider"></div>
 
 <!-- SIGNALS DEMO -->
 <section id="signals">
@@ -755,35 +871,75 @@
   <h2 class="reveal">This is what lands in your Telegram</h2>
   <p class="section-sub reveal">Clean, structured, and everything you need to act immediately — no confusion, no missing information.</p>
   <div class="demo-wrap">
-    <div style="display:flex;flex-direction:column;gap:16px;">
-      <div class="signal-card reveal">
-        <div class="signal-card-header">
-          <div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
-          <span>entry signal · 09:45</span>
-        </div>
-        <div class="signal-body">
-          <div class="s-badge">NEW SIGNAL</div><br>
-          <span class="s-green">🚀 BUY SIGNAL</span><br>
-          👑 GOLD<br>──────────────────<br>
-          EP:  <span class="s-gold">3285.50</span><br>
-          TP1: <span class="s-blue">3295.50</span><br>
-          TP2: <span class="s-blue">3310.20</span><br>
-          SL:  <span class="s-orange">3271.80</span><br>
-          ──────────────────<br>
-          Conf: <span class="s-green">78%</span> | RR: HIGH
-        </div>
+    <div>
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('gold',this)">👑 Gold</button>
+        <button class="tab-btn" onclick="switchTab('silver',this)">🥈 Silver</button>
       </div>
-      <div class="signal-card reveal reveal-delay-1">
-        <div class="signal-card-header">
-          <div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
-          <span>tp2 hit · 11:30</span>
+      <div class="tab-wrap">
+        <div class="tab-panel active" id="tab-gold">
+          <div class="signal-card">
+            <div class="signal-card-header">
+              <div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+              <span>entry signal · 09:45</span>
+            </div>
+            <div class="signal-body">
+              <div class="s-badge">NEW SIGNAL</div><br>
+              <span class="s-green">🚀 BUY SIGNAL</span><br>
+              👑 GOLD<br>──────────────────<br>
+              EP:  <span class="s-gold">3285.50</span><br>
+              TP1: <span class="s-blue">3295.50</span><br>
+              TP2: <span class="s-blue">3310.20</span><br>
+              SL:  <span class="s-orange">3271.80</span><br>
+              ──────────────────<br>
+              Conf: <span class="s-green">78%</span> | RR: HIGH
+            </div>
+          </div>
+          <div class="signal-card">
+            <div class="signal-card-header">
+              <div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+              <span>tp2 hit · 11:30</span>
+            </div>
+            <div class="signal-body">
+              <span class="s-blue">🎯🎯 TP2 HIT 🎯🎯</span><br>
+              👑 GOLD<br><br>
+              <span class="s-gray">BUY | EP: 3285.50</span><br>
+              TP2: <span class="s-blue">3310.20</span><br>
+              Exit: <span class="s-green">3310.20</span>
+            </div>
+          </div>
         </div>
-        <div class="signal-body">
-          <span class="s-blue">🎯🎯 TP2 HIT 🎯🎯</span><br>
-          👑 GOLD<br><br>
-          <span class="s-gray">BUY | EP: 3285.50</span><br>
-          TP2: <span class="s-blue">3310.20</span><br>
-          Exit: <span class="s-green">3310.20</span>
+        <div class="tab-panel" id="tab-silver">
+          <div class="signal-card">
+            <div class="signal-card-header">
+              <div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+              <span>entry signal · 10:15</span>
+            </div>
+            <div class="signal-body">
+              <div class="s-badge">NEW SIGNAL</div><br>
+              <span class="s-orange">📉 SELL SIGNAL</span><br>
+              🥈 SILVER<br>──────────────────<br>
+              EP:  <span class="s-gold">32.450</span><br>
+              TP1: <span class="s-blue">32.120</span><br>
+              TP2: <span class="s-blue">31.800</span><br>
+              SL:  <span class="s-orange">32.810</span><br>
+              ──────────────────<br>
+              Conf: <span class="s-green">74%</span> | RR: MED
+            </div>
+          </div>
+          <div class="signal-card">
+            <div class="signal-card-header">
+              <div class="dot-row"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+              <span>tp1 hit · 11:05</span>
+            </div>
+            <div class="signal-body">
+              <span class="s-blue">🎯 TP1 HIT 🎯</span><br>
+              🥈 SILVER<br><br>
+              <span class="s-gray">SELL | EP: 32.450</span><br>
+              TP1: <span class="s-blue">32.120</span><br>
+              Exit: <span class="s-green">32.120</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -818,7 +974,7 @@
   </div>
 </section>
 
-<div class="full-border"></div>
+<div class="shimmer-divider"></div>
 
 <!-- HOW IT WORKS -->
 <section id="how">
@@ -834,7 +990,7 @@
   </div>
 </section>
 
-<div class="full-border"></div>
+<div class="shimmer-divider"></div>
 
 <!-- COMPARISON TABLE -->
 <section id="compare">
@@ -891,7 +1047,7 @@
   </div>
 </section>
 
-<div class="full-border"></div>
+<div class="shimmer-divider"></div>
 
 <!-- FAQ -->
 <section id="faq">
@@ -951,7 +1107,7 @@
   <div class="section-tag reveal">Ready to start?</div>
   <h2 class="reveal">Stop guessing.<br>Start trading with AI.</h2>
   <p class="reveal">Chee AI Pro runs 24/5 so you never miss a setup — even while you sleep.</p>
-  <a href="https://t.me/CheeHeeLoh" target="_blank" class="btn-gold reveal" style="font-size:16px;padding:16px 44px;">
+  <a href="https://t.me/CheeHeeLoh" target="_blank" class="btn-gold magnetic reveal" id="mainCta" style="font-size:16px;padding:16px 44px;">
     💬 Message Chee on Telegram
   </a>
 </div>
@@ -1136,6 +1292,126 @@ function toggleFaq(btn) {
   const isOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
+}
+
+/* ══════════════════════════════════════
+   SCROLL PROGRESS BAR
+══════════════════════════════════════ */
+(function() {
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = Math.min((scrolled / total) * 100, 100) + '%';
+  });
+})();
+
+/* ══════════════════════════════════════
+   CUSTOM GOLD CURSOR
+══════════════════════════════════════ */
+(function() {
+  const cursor = document.getElementById('cursor');
+  let mx = -100, my = -100;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+  document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+  });
+})();
+
+/* ══════════════════════════════════════
+   TYPEWRITER HEADLINE
+══════════════════════════════════════ */
+(function() {
+  const line1El = document.getElementById('tw-line1');
+  const line2El = document.getElementById('tw-line2');
+  const line1 = 'Trade like the';
+  const line2 = 'smart money does.';
+  let i = 0, phase = 1;
+
+  function type() {
+    if (phase === 1) {
+      if (i <= line1.length) {
+        line1El.textContent = line1.slice(0, i++);
+        setTimeout(type, 55);
+      } else {
+        phase = 2; i = 0;
+        setTimeout(type, 120);
+      }
+    } else {
+      if (i <= line2.length) {
+        line2El.textContent = line2.slice(0, i++);
+        setTimeout(type, 55);
+      }
+    }
+  }
+  setTimeout(type, 400);
+})();
+
+/* ══════════════════════════════════════
+   PARALLAX HERO
+══════════════════════════════════════ */
+(function() {
+  const glow1 = document.querySelector('.hero-glow');
+  const glow2 = document.querySelector('.hero-glow2');
+  const content = document.querySelector('.hero-content');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight) {
+      glow1.style.transform = `translateX(-50%) translateY(${y * 0.3}px)`;
+      glow2.style.transform = `translateX(-50%) translateY(${y * 0.2}px)`;
+      content.style.transform = `translateY(${y * 0.15}px)`;
+      content.style.opacity = 1 - (y / (window.innerHeight * 0.8));
+    }
+  });
+})();
+
+/* ══════════════════════════════════════
+   SHIMMER DIVIDERS
+══════════════════════════════════════ */
+(function() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('animate');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.shimmer-divider').forEach(el => obs.observe(el));
+})();
+
+/* ══════════════════════════════════════
+   MAGNETIC BUTTONS
+══════════════════════════════════════ */
+(function() {
+  document.querySelectorAll('.magnetic').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      btn.style.transform = `translate(${dx * 0.28}px, ${dy * 0.28}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+})();
+
+/* ══════════════════════════════════════
+   SIGNAL TABS
+══════════════════════════════════════ */
+function switchTab(asset, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + asset).classList.add('active');
 }
 </script>
 </body>

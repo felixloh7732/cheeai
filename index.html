@@ -569,17 +569,6 @@
     box-shadow: 0 0 8px rgba(240,192,64,0.6);
   }
 
-  /* ── CUSTOM CURSOR ── */
-  body { cursor: none; }
-  #cursor {
-    position: fixed; pointer-events: none; z-index: 99999;
-    width: 28px; height: 28px;
-    transform: translate(-50%, -50%);
-    transition: transform 0.08s ease, opacity 0.2s;
-  }
-  #cursor svg { width: 100%; height: 100%; }
-  #cursor.hovering { transform: translate(-50%, -50%) scale(1.4); }
-  a, button { cursor: none; }
 
   /* ── PLATFORM LOGOS STRIP ── */
   .logos-strip {
@@ -616,7 +605,7 @@
   .tab-btn {
     flex: 1; padding: 12px 20px; border: none; background: transparent;
     font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
-    color: var(--text3); cursor: none; transition: all 0.2s;
+    color: var(--text3); cursor: pointer; transition: all 0.2s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
   .tab-btn.active { background: var(--bg2); color: var(--gold); border-bottom: 2px solid var(--gold); }
@@ -660,14 +649,6 @@
 <!-- SCROLL PROGRESS -->
 <div id="progress-bar"></div>
 
-<!-- CUSTOM CURSOR -->
-<div id="cursor">
-  <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="14" y1="2" x2="14" y2="26" stroke="#F0C040" stroke-width="1.5" stroke-linecap="round"/>
-    <line x1="2" y1="14" x2="26" y2="14" stroke="#F0C040" stroke-width="1.5" stroke-linecap="round"/>
-    <circle cx="14" cy="14" r="3" stroke="#F0C040" stroke-width="1.2" fill="none" opacity="0.6"/>
-  </svg>
-</div>
 
 <!-- FLOATING CTA -->
 <a href="https://t.me/CheeHeeLoh" target="_blank" class="float-cta" id="floatCta">
@@ -1306,24 +1287,6 @@ function toggleFaq(btn) {
   });
 })();
 
-/* ══════════════════════════════════════
-   CUSTOM GOLD CURSOR
-══════════════════════════════════════ */
-(function() {
-  const cursor = document.getElementById('cursor');
-  let mx = -100, my = -100;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-  });
-  document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
-  document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-  });
-})();
 
 /* ══════════════════════════════════════
    TYPEWRITER HEADLINE
